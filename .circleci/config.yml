@@ -14,7 +14,8 @@ jobs:
           name: "Build project"
           command: "sh 'mvn clean compile'"
       - test
-      - run: "Test running"
+      - run:
+      - name: "Test running"
         command: "sh 'mvn clean test'"
 
 workflows:
