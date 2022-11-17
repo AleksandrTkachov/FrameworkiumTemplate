@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  say-hello:
+  frameworkium-tests:
     docker:
       - image: cimg/base:stable
     steps:
@@ -9,16 +9,14 @@ jobs:
       - run:
           name: "Project checkout"
           command: "git 'https://github.com/AleksandrTkachov/FrameworkiumTemplate.git'"
-      - build
       - run:
           name: "Build project"
           command: "sh 'mvn clean compile'"
-      - test
       - run:
           name: "Test running"
           command: "sh 'mvn clean test'"
 
 workflows:
-  say-hello-workflow:
+  frameworkium-tests-workflow:
     jobs:
-      - say-hello
+      - frameworkium-tests
