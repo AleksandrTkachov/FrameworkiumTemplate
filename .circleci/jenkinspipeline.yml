@@ -2,11 +2,11 @@ pipeline:
   agent:
     any:
   stages:
-    - stage: "Jenkins YAML Maven Build"
+    - stage: "Jenkins YML Maven Build"
       steps:
         - git "https://github.com/AleksandrTkachov/FrameworkiumTemplate.git"
         - sh 'mvn clean compile test install'
-    - stage: "Final Jenkins YAML Pipeline Stage"
+    - stage: "Final Jenkins YML Pipeline Stage"
       steps:
         - sh "echo 'Jenkins YAML Pipeline Complete'"
 

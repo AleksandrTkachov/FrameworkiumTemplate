@@ -17,7 +17,7 @@ public class GoogleMainPage extends BasePage<GoogleMainPage> {
 
     @Name("Search input")
     @Visible
-    @FindBy(css = ".gLFyf.gsfi")
+    @FindBy(className = "gLFyf")
     private WebElement searchInput;
 
     @Name("Search button")
