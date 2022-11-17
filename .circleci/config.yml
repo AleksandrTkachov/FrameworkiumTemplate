@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  frameworkium-tests:
+  say-hello:
     docker:
       - image: cimg/base:stable
     steps:
@@ -19,6 +19,6 @@ jobs:
           command: "sh 'mvn clean test'"
 
 workflows:
-  frameworkium-tests-workflow:
+  say-hello-workflow:
     jobs:
-      - frameworkium-tests
+      - say-hello
