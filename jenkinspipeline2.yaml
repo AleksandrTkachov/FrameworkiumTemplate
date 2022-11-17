@@ -1,0 +1,27 @@
+pipeline:
+  agent:
+    any:
+  tools:
+    maven: default
+  stages:
+    - stage: Checkout
+      steps:
+        - git 'https://github.com/AleksandrTkachov/FrameworkiumTemplate.git'
+    - stage: Build
+        - sh 'mvn clean compile'
+    - stage: Test
+      steps:
+        script:
+          - sh "mvn clean test"
+    - stage: Install
+  post:
+    always:
+      steps:
+        script:
+          allure:
+            includeProperties: false
+            jdk: ''
+            properties:
+            reportBuildPolicy: 'Always'
+            result:
+              path: 'target/allure-results'
