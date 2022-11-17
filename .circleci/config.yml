@@ -15,8 +15,8 @@ jobs:
           command: "sh 'mvn clean compile'"
       - test
       - run:
-        name: "Test running"
-        command: "sh 'mvn clean test'"
+          name: "Test running"
+          command: "sh 'mvn clean test'"
 
 workflows:
   frameworkium-tests-workflow:
