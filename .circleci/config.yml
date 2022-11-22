@@ -8,7 +8,11 @@ jobs:
       - checkout
       - run:
           name: "Project checkout"
-          command: "cat /etc/os-release && apt-get update"
+          command: |
+            git --version
+            echo whoami
+            cat /etc/os-release
+            apt-get update 
 
 workflows:
   frameworkium-tests-workflow:
