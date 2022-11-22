@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  frameworkium-tests:
+  build-application:
     docker:
       - image: cimg/base:stable
     steps:
@@ -11,9 +11,11 @@ jobs:
           command: |
             sudo apt-get update
             sudo apt install git
-            git clone https://github.com/AleksandrTkachov/FrameworkiumTemplate.git 
+            git clone https://github.com/AleksandrTkachov/FrameworkiumTemplate.git
+            pwd
+            ls -la 
 
 workflows:
-  frameworkium-tests-workflow:
+  build-application-workflow:
     jobs:
-      - frameworkium-tests
+      - build-application
