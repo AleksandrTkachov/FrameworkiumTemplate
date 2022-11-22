@@ -10,7 +10,8 @@ jobs:
           name: "Project checkout"
           command: |
             sudo apt-get update
-            sudo apt install git 
+            sudo apt install git
+            git clone https://github.com/AleksandrTkachov/FrameworkiumTemplate.git 
 
 workflows:
   frameworkium-tests-workflow:
