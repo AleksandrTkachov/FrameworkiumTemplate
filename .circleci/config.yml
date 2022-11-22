@@ -13,7 +13,10 @@ jobs:
             sudo apt install git
             git clone https://github.com/AleksandrTkachov/FrameworkiumTemplate.git
             pwd
-            ls -la 
+            ls -la
+            sudo apt-get install openjdk-8-jdk -y
+            sudo apt install maven -y
+             
 
 workflows:
   build-application-workflow:
