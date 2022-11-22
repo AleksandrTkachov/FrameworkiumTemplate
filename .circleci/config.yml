@@ -7,15 +7,26 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "Project checkout"
+          name: "git clone"
           command: |
             sudo apt-get update
             sudo apt install git
             git clone https://github.com/AleksandrTkachov/FrameworkiumTemplate.git
+  ui-test:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - run:
+          name: "Run UI test"
+          command: |
+            sudo apt-get update
             pwd
             ls -la
             sudo apt-get install openjdk-8-jdk -y
             sudo apt install maven -y
+            cd /home/circleci/project/src/test/java/ui/tests/
+            mvn test
              
 
 workflows:
