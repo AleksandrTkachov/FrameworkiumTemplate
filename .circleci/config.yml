@@ -9,10 +9,8 @@ jobs:
       - run:
           name: "Project checkout"
           command: |
-            git --version
-            echo whoami
-            cat /etc/os-release
-            apt-get update 
+            sudo apt-get update
+            sudo apt install git 
 
 workflows:
   frameworkium-tests-workflow:
