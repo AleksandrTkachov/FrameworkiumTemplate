@@ -8,7 +8,7 @@ jobs:
       - checkout
       - run:
           name: "Project checkout"
-          command: "git 'https://github.com/AleksandrTkachov/FrameworkiumTemplate.git'"
+          command: "git clone'https://github.com/AleksandrTkachov/FrameworkiumTemplate.git' && 'cat /etc/os-release'"
       - run:
           name: "Build project"
           command: "sh 'mvn clean compile'"
