@@ -9,12 +9,6 @@ jobs:
       - run:
           name: "Project checkout"
           command: "cat /etc/os-release"
-      - run:
-          name: "Build project"
-          command: "sh 'mvn clean compile'"
-      - run:
-          name: "Test running"
-          command: "sh 'mvn clean test'"
 
 workflows:
   frameworkium-tests-workflow:
