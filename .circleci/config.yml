@@ -39,7 +39,7 @@ jobs:
                pwd
                ls -la
                sudo apt-get install openjdk-8-jdk -y
-               sudo apt install maven -y
+               sudo apt install firefox maven -y
                mvn clean verify -f pom.xml -Dtest=SearchTests* 
 
 
