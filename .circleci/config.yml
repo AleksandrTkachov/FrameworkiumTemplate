@@ -24,13 +24,13 @@ jobs:
        - run:
              name: "Run UI test"
              command: |
-               sudo apt-get update
-               pwd
-               ls -la
-               sudo apt-get install openjdk-8-jdk -y
-               sudo apt install maven -y
+              #  sudo apt-get update
+              #  pwd
+              #  ls -la
+              #  sudo apt-get install openjdk-8-jdk -y
+              #  sudo apt install maven -y
 
-               mvn clean verify -Dtest=SearchTests* 
+              #  mvn clean verify -Dtest=SearchTests* 
 
       # steps:
       #   - checkout
