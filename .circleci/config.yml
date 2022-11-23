@@ -9,9 +9,8 @@ jobs:
       - run:
           name: Download Selenium
           command: |
-          ls -la
-          cat /etc/os-release
-          curl -O http://selenium-release.storage.googleapis.com/3.5/selenium-server-standalone-3.5.3.jar
+            cat /etc/os-release
+            curl -O http://selenium-release.storage.googleapis.com/3.5/selenium-server-standalone-3.5.3.jar
       - run:
           name: Start Selenium
           command: |
