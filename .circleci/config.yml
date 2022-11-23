@@ -25,9 +25,8 @@ jobs:
             ls -la
             sudo apt-get install openjdk-8-jdk -y
             sudo apt install maven -y
-            mvn clean verify -Dtest=BookerTest*
-             
-
+            mvn clean verify -Dtest=api/tests/**.*
+  
 workflows:
   build-application-workflow:
     jobs:
