@@ -25,7 +25,7 @@ jobs:
             ls -la
             sudo apt-get install openjdk-8-jdk -y
             sudo apt install maven -y
-            mvn clean test
+            mvn clean verify -Dtest=SearchTests*
              
 
 workflows:
