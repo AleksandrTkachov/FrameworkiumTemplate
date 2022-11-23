@@ -12,24 +12,24 @@ jobs:
             sudo apt-get update
             sudo apt install git
             git clone https://github.com/AleksandrTkachov/FrameworkiumTemplate.git
-  ui-test:
+  api-test:
     docker:
       - image: cimg/base:stable
     steps:
       - checkout
       - run:
-          name: "Run UI test"
+          name: "Run API test"
           command: |
             sudo apt-get update
             pwd
             ls -la
             sudo apt-get install openjdk-8-jdk -y
             sudo apt install maven -y
-            mvn clean verify -Dtest=SearchTests*
+            mvn clean verify -Dtest=BookerTest*
              
 
 workflows:
   build-application-workflow:
     jobs:
       - build-application
-      - ui-test
+      - api-test
