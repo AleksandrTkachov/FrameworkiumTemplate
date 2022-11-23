@@ -6,8 +6,12 @@ jobs:
   build-application:
     docker:
       - image: cimg/base:stable
+      - image: cimg/node:12.22-browsers
+
     steps:
       - checkout
+      - browser-tools/install-chrome
+      - node/install-packages
       - run:
           name: "git clone"
           command: |
@@ -15,32 +19,25 @@ jobs:
             sudo apt install git
             git clone https://github.com/AleksandrTkachov/FrameworkiumTemplate.git
             
-  chrome:
+  ui-test:
     docker:
       - image: cimg/node:12.22-browsers
+      - image: cimg/base:stable
     steps:
       - checkout
       - browser-tools/install-chrome
       - node/install-packages
       - run:
-          name: Run TestCafe tests on headless Chrome
-          command: npm run test:chrome:headless
+          name: "Run UI test"
+          command: |
+               sudo apt-get update
+               pwd
+               ls -la
+               sudo apt-get install openjdk-8-jdk -y
+               sudo apt install maven -y
+               npm run test:chrome:headless
+               mvn clean verify -Dtest=SearchTests*  
 
-
-  ui-test:
-    docker:
-      - image: cimg/base:stable
-    steps:
-      - checkout
-      - run: mkdir test-reports
-      - run:
-          name: Download Selenium
-          command: curl -O http://selenium-release.storage.googleapis.com/3.5/selenium-server-standalone-3.5.3.jar
-      - run:
-          name: Start Selenium
-          command: java -jar selenium-server-standalone-3.5.3.jar
-          background: true
- 
       # steps:
       #   - checkout
       #   - run:
@@ -63,4 +60,3 @@ workflows:
     jobs:
       - build-application
       - ui-test
-      - chrome
