@@ -1,42 +1,20 @@
 version: 2.1
-orbs:
-  node: circleci/node@4.3.0
-  browser-tools: circleci/browser-tools@1.1.3
-jobs:
-  build-application:
-    docker:
-      - image: cimg/base:stable
-      - image: cimg/node:12.22-browsers
 
-    steps:
-      - checkout
-      - browser-tools/install-chrome
-      - node/install-packages
-      - run:
-          name: "git clone"
-          command: |
-            sudo apt-get update
-            sudo apt install git
-            git clone https://github.com/AleksandrTkachov/FrameworkiumTemplate.git
-            
-  ui-test:
+orbs:
+  saucectl: saucelabs/saucectl-run@2.0.0
+
+jobs:
+  test-cypress:
     docker:
-      - image: cimg/node:12.22-browsers
-      - image: cimg/base:stable
+      - image: cimg/node:lts
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - checkout
-      - browser-tools/install-chrome
-      - node/install-packages
-      - run:
-          name: "Run UI test"
-          command: |
-               sudo apt-get update
-               pwd
-               ls -la
-               sudo apt-get install openjdk-8-jdk -y
-               sudo apt install maven -y
-               npm run test:chrome:headless
-               mvn clean verify -Dtest=SearchTests*  
+      - setup_remote_docker:
+          version: 20.10.2
+      - saucectl/saucectl-run
 
       # steps:
       #   - checkout
@@ -58,5 +36,4 @@ jobs:
 workflows:
   build-application-workflow:
     jobs:
-      - build-application
-      - ui-test
+      - test-cypress
