@@ -10,6 +10,10 @@ jobs:
           name: Download Selenium
           command: |
             cat /etc/os-release
+            wget https://github.com/mozilla/geckodriver/releases/download/v0.32.0/geckodriver-v0.32.0-linux64.tar.gz
+            tar -xvzf geckodriver*
+            chmod +x geckodriver
+            ll
             #curl -O http://selenium-release.storage.googleapis.com/3.5/selenium-server-standalone-3.5.3.jar
       # - run:
       #     name: Start Selenium
