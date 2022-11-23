@@ -40,12 +40,6 @@ jobs:
                ls -la
                sudo apt-get install openjdk-8-jdk -y
                sudo apt install firefox maven -y
-               sudo apt-get install xvfb
-               touch ~/.Xauthority
-               xauth generate :0 . trusted
-               xauth add ${HOST}:0 . $(xxd -l 16 -p /dev/urandom)
-               xauth list
-               export DISPLAY=:0
                mvn clean verify -f pom.xml -Dtest=SearchTests* -Dheadless=true
 
 
