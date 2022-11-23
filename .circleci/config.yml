@@ -14,6 +14,9 @@ jobs:
             tar -xvzf geckodriver*
             chmod +x geckodriver
             ls -la
+            mv geckodriver /tmp
+            export PATH=$PATH:/tmp/geckodriver
+            
             #curl -O http://selenium-release.storage.googleapis.com/3.5/selenium-server-standalone-3.5.3.jar
       # - run:
       #     name: Start Selenium
