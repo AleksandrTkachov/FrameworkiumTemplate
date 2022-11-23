@@ -1,5 +1,7 @@
 version: 2.1
-
+orbs:
+  node: circleci/node@4.3.0
+  browser-tools: circleci/browser-tools@1.1.3
 jobs:
   build-application:
     docker:
@@ -12,6 +14,19 @@ jobs:
             sudo apt-get update
             sudo apt install git
             git clone https://github.com/AleksandrTkachov/FrameworkiumTemplate.git
+            
+  chrome:
+    docker:
+      - image: cimg/node:12.22-browsers
+    steps:
+      - checkout
+      - browser-tools/install-chrome
+      - node/install-packages
+      - run:
+          name: Run TestCafe tests on headless Chrome
+          command: npm run test:chrome:headless
+
+
   ui-test:
     docker:
       - image: cimg/base:stable
@@ -48,3 +63,4 @@ workflows:
     jobs:
       - build-application
       - ui-test
+      - chrome
