@@ -1,6 +1,8 @@
 version: 2.1
 jobs:
   build:
+    working_directory: /tmp
+    
     docker:
       - image: cimg/base:stable
     steps:
@@ -41,14 +43,15 @@ jobs:
                mvn clean verify -f pom.xml -Dtest=SearchTests* -Dheadless=true
                allure generate --clean
        - run:
-            name: generate allure report
-            command: |
-              sudo npm install -g allure-commandline
-              allure generate --clean
-            when: always
+             name: "generate allure report"
+             command: |
+               sudo npm install -g allure-commandline
+               echo BRANCH=development >> allure-results/environment.properties
+               echo COMMIT=$CI_PULL_REQUEST/commits/$CIRCLE_SHA1 >> allure-results/environment.properties
+               allure generate --clean
 
        - store_artifacts:
-          path: /home/circleci/project/allure-report
+              path: /home/circleci/project/allure-report
 
       # steps:
       #   - checkout
