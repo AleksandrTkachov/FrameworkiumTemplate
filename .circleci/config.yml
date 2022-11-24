@@ -41,17 +41,18 @@ jobs:
                sudo apt-get install openjdk-8-jdk -y
                sudo apt install firefox maven -y
                mvn clean verify -f pom.xml -Dtest=SearchTests* -Dheadless=true
-               allure generate --clean
+               sudo npm install -g allure-commandline
+               sudo allure generate --clean
        - run:
              name: "generate allure report"
              command: |
                sudo npm install -g allure-commandline
                echo BRANCH=development >> allure-results/environment.properties
                echo COMMIT=$CI_PULL_REQUEST/commits/$CIRCLE_SHA1 >> allure-results/environment.properties
-               allure generate --clean
+               sudo allure generate --clean
 
        - store_artifacts:
-              path: /home/circleci/project/allure-report
+              path: /tmp/artifacts
 
       # steps:
       #   - checkout
